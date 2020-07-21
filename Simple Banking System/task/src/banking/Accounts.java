@@ -37,12 +37,15 @@ public class Accounts {
         currentAccount = null;
         return true;
     }
-        public  Account generateNewAccount(Random rnd){
+    public  Account generateNewAccount(Random rnd){
         return new Account(generateCardNumber(rnd),generatePin(rnd));
     }
+
     private static String generateCardNumber(Random rnd){
-        return "400000"+generateNumber(9,rnd)+"1";
+        String number = "400000"+generateNumber(10,rnd);
+        return number.substring(0,15)+Account.getCheckDigit(number);
     }
+
     private static String generatePin(Random rnd){
         return generateNumber(4,rnd);
     }

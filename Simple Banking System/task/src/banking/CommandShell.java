@@ -30,7 +30,8 @@ public class CommandShell {
 
     public void run(){
         while (!isExit){
-            System.out.println("1. Create an account\n" +
+            System.out.println(
+                    "1. Create an account\n" +
                     "2. Log into account\n" +
                     "0. Exit");
             String input = scanner.nextLine();
