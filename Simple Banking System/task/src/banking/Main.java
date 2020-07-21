@@ -1,7 +1,10 @@
 package banking;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        CommandShell shell = new CommandShell(new Scanner(System.in),new Accounts());
+        shell.run();
     }
 }
