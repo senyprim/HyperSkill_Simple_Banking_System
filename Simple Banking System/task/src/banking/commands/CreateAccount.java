@@ -1,6 +1,9 @@
-package banking;
+package banking.commands;
 
-public class CreateAccount implements ICommand{
+import banking.model.Account;
+import banking.CommandShell;
+
+public class CreateAccount implements ICommand {
     private CommandShell shell;
     public CreateAccount(CommandShell shell) {
         this.shell = shell;

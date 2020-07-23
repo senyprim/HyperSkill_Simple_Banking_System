@@ -1,4 +1,6 @@
-package banking;
+package banking.commands;
+
+import banking.CommandShell;
 
 public class LoginAccount implements ICommand {
     CommandShell shell;

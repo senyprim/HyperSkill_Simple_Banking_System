@@ -1,6 +1,8 @@
-package banking;
+package banking.commands;
 
-public class LogOutCommand implements ICommand{
+import banking.CommandShell;
+
+public class LogOutCommand implements ICommand {
     CommandShell shell ;
     public LogOutCommand(CommandShell shell) {
         this.shell = shell;

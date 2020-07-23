@@ -1,6 +1,8 @@
-package banking;
+package banking.commands;
 
-public class BalanceCommand implements ICommand{
+import banking.CommandShell;
+
+public class BalanceCommand implements ICommand {
     CommandShell shell;
     public BalanceCommand(CommandShell shell) {
         this.shell=shell;

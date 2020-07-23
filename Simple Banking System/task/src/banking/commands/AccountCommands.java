@@ -1,6 +1,8 @@
-package banking;
+package banking.commands;
 
-public class AccountCommands implements ICommand{
+import banking.CommandShell;
+
+public class AccountCommands implements ICommand {
     private CommandShell shell ;
     private boolean exit=false;
     public AccountCommands(CommandShell shell) {
