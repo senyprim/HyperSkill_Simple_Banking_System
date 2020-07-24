@@ -12,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repo {
-    private static final String CREATE_TABLE = " create table cards (" +
-            "id INTEGER PRIMARY KEY," +
-            "number text," +
-            "pin text," +
-            "balance integer default 0)";
-    private static final String ADD_ACCOUNT = "insert into cards (number,pin,balance) values (?,?,?)";
-    private static final String GET_ACCOUNT_ID = "select id from cards where number = ? and pin = ? and balance = ?";
+    private static final String CREATE_TABLE = "CREATE TABLE card (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "number TEXT," +
+            "pin TEXT," +
+            "balance INTEGER DEFAULT 0)";
+    private static final String ADD_ACCOUNT = "insert into card (number,pin,balance) values (?,?,?)";
+    private static final String GET_ACCOUNT_ID = "select id from card where number = ? and pin = ? and balance = ?";
+    private static final String PATH = "";
 
     public static void saveAccount(Connection connection, Account account) throws SQLException {
-        if (getAccountId(connection,account)==-1) return;
+        if (getAccountId(connection,account)!=-1) return;
 
         PreparedStatement st = connection.prepareStatement(ADD_ACCOUNT);
 
@@ -48,8 +49,8 @@ public class Repo {
     }
 
     public static Connection getConnection(String dbname) throws SQLException {
-        String url = "jdbc:sqlite:"+dbname;
-        boolean isExist = Files.exists(Path.of(dbname));
+        String url = "jdbc:sqlite:"+PATH+dbname;
+        boolean isExist = Files.exists(Path.of(PATH+dbname));
 
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl(url);
@@ -62,14 +63,13 @@ public class Repo {
                 }
                 return con;
             }
-
         return null;
     }
 
     public static Accounts getAccounts(Connection connection) throws SQLException {
         List<Account> accounts = new ArrayList<>();
         Statement statement = connection.createStatement();
-        ResultSet select = statement.executeQuery("select * from cards");
+        ResultSet select = statement.executeQuery("select * from card");
         while (select.next()) {
             Account newAccount = new Account(
                     select.getString("number")

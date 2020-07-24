@@ -12,12 +12,16 @@ public class Main {
     public static void main(String[] args) {
 
         if (args==null || args.length<2) return;
-        int index = Arrays.asList(args).indexOf("-filename");
-        if (index!=-1 || args.length<index+1) return;
+        int index = Arrays.asList(args).indexOf("-fileName");
+        if (index==-1 || args.length<index+1) return;
 
         String dbname = args[index+1];
         try(Connection connection = Repo.getConnection(dbname)){
+            if (connection==null){
+                throw new IllegalStateException("wrong connection");
+            }
             Accounts accounts = Repo.getAccounts(connection);
+            System.out.println(accounts.size());
             CommandShell shell = new CommandShell(new Scanner(System.in),accounts,connection);
             shell.run();
         }

@@ -26,6 +26,9 @@ public class Accounts {
         }
         return false;
     }
+    public int size(){
+        return accounts.size();
+    }
 
     public boolean isContains(Account account){
         return accounts.stream().anyMatch(item ->
