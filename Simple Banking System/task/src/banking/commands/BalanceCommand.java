@@ -11,6 +11,6 @@ public class BalanceCommand implements ICommand {
     @Override
     public void execute() {
         System.out.println();
-        System.out.println(shell.getAccounts().getBalance());
+        System.out.println("Balance: "+shell.getAccounts().getBalance());
     }
 }

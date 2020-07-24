@@ -5,10 +5,14 @@ import java.util.Random;
 public class Account {
     private final String cardNumber;
     private String pin;
-    private double money=0;
-    public Account(String cardNumber, String pin){
+    private int money=0;
+    public Account(String cardNumber, String pin,int balance){
         this.cardNumber = cardNumber;
         this.pin = pin;
+        this.money = balance;
+    }
+    public Account(String cardNumber, String pin){
+        this(cardNumber,pin,0);
     }
 
 
@@ -20,7 +24,7 @@ public class Account {
         return pin;
     }
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     }
 

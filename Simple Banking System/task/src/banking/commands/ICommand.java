@@ -1,5 +1,7 @@
 package banking.commands;
 
+import java.sql.SQLException;
+
 public interface ICommand {
-    void execute();
+    void execute() throws SQLException;
 }

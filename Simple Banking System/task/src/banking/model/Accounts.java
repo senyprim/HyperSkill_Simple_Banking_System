@@ -19,8 +19,18 @@ public class Accounts {
     public Accounts(){
         this(new ArrayList<>());
     }
-    public void addAccount(Account account){
-        this.accounts.add(account);
+    public boolean addAccount(Account account){
+        if (!isContains(account)){
+            this.accounts.add(account);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isContains(Account account){
+        return accounts.stream().anyMatch(item ->
+                Objects.equals(account.getCardNumber(),item.getCardNumber())
+                        && Objects.equals(account.getPin(),item.getPin()));
     }
 
     public boolean login(String cardNumber, String pin){
@@ -33,10 +43,12 @@ public class Accounts {
         }
         return false;
     }
+
     public boolean logout(){
         currentAccount = null;
         return true;
     }
+
     public  Account generateNewAccount(Random rnd){
         return new Account(generateCardNumber(rnd),generatePin(rnd));
     }
@@ -57,7 +69,7 @@ public class Accounts {
         return stb.toString();
     }
 
-    public double getBalance (){
+    public int getBalance (){
         return currentAccount.getMoney();
     }
 }

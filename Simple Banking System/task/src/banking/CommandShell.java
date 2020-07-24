@@ -4,21 +4,26 @@ import banking.commands.CreateAccount;
 import banking.commands.LoginAccount;
 import banking.model.Accounts;
 
+import java.sql.Connection;
 import java.util.Random;
 import java.util.Scanner;
 
 public class CommandShell {
     private Scanner scanner;
     private Accounts accounts;
+    private Connection connection;
     private boolean isExit = false;
     public final Random rnd;
 
-    public CommandShell(Scanner scanner,Accounts accounts){
+    public CommandShell(Scanner scanner,Accounts accounts,Connection connection){
         this.scanner=scanner;
         this.accounts=accounts;
         this.rnd = new Random();
+        this.connection = connection;
     }
-
+    public Connection getConnection(){
+        return connection;
+    }
     public void setExit(boolean exit) {
         isExit = exit;
     }
