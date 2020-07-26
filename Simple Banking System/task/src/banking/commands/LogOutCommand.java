@@ -11,7 +11,6 @@ public class LogOutCommand implements ICommand {
     @Override
     public void execute() {
         shell.getAccounts().logout();
-        System.out.println();
         System.out.println("You have successfully logged out!");
     }
 }

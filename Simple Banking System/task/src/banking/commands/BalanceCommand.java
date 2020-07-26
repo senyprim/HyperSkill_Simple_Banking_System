@@ -2,6 +2,8 @@ package banking.commands;
 
 import banking.CommandShell;
 
+import java.sql.SQLException;
+
 public class BalanceCommand implements ICommand {
     CommandShell shell;
     public BalanceCommand(CommandShell shell) {
@@ -10,7 +12,10 @@ public class BalanceCommand implements ICommand {
 
     @Override
     public void execute() {
-        System.out.println();
-        System.out.println("Balance: "+shell.getAccounts().getBalance());
+        try{
+            System.out.println("Balance: "+shell.getAccounts().getBalance());
+        } catch (SQLException exception){
+            System.out.println("SQL Error"+exception.getMessage());
+        }
     }
 }

@@ -11,18 +11,16 @@ import java.util.Scanner;
 public class CommandShell {
     private Scanner scanner;
     private Accounts accounts;
-    private Connection connection;
     private boolean isExit = false;
     public final Random rnd;
 
-    public CommandShell(Scanner scanner,Accounts accounts,Connection connection){
+    public CommandShell(Scanner scanner,Connection connection){
         this.scanner=scanner;
-        this.accounts=accounts;
+        this.accounts = new Accounts(connection);
         this.rnd = new Random();
-        this.connection = connection;
     }
     public Connection getConnection(){
-        return connection;
+        return accounts.getConnection();
     }
     public void setExit(boolean exit) {
         isExit = exit;

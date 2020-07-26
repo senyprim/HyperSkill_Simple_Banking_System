@@ -13,20 +13,18 @@ public class CreateAccount implements ICommand {
     }
     @Override
     public void execute()  {
-        Account newAccount = shell.getAccounts().generateNewAccount(shell.rnd);
-        boolean result = shell.getAccounts().addAccount(newAccount);
-        if (result){
-            try {
-                Repo.saveAccount(shell.getConnection(),newAccount);
-
-        System.out.printf("Your card has been created\n" +
-                "Your card number:\n" +
-                "%s\n" +
-                "Your card PIN:\n" +
-                "%s\n",newAccount.getCardNumber(),newAccount.getPin());
-            } catch (SQLException throwables) {
-                System.out.println(throwables.getMessage());
+        Account newAccount = Account.createAccount(shell.rnd);
+        try {
+            boolean result = shell.getAccounts().addOrUpdateAccount(newAccount);
+            if (result){
+            System.out.printf("Your card has been created\n" +
+                              "Your card number:\n" +
+                              "%s\n" +
+                              "Your card PIN:\n" +
+                              "%s\n",newAccount.getCardNumber(),newAccount.getPin());
             }
-        }
+        } catch (SQLException throwables) {
+        System.out.println(throwables.getMessage());
     }
+  }
 }

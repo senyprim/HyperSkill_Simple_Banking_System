@@ -20,9 +20,7 @@ public class Main {
             if (connection==null){
                 throw new IllegalStateException("wrong connection");
             }
-            Accounts accounts = Repo.getAccounts(connection);
-            System.out.println(accounts.size());
-            CommandShell shell = new CommandShell(new Scanner(System.in),accounts,connection);
+            CommandShell shell = new CommandShell(new Scanner(System.in),connection);
             shell.run();
         }
         catch (Exception e){
